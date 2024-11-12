@@ -2,17 +2,55 @@
 
 public class BirdScript : MonoBehaviour
 {
-    [SerializeField]
+    //[SerializeField]
     private Transform arrow;
     private Rigidbody2D rb2d;
-    private bool isOnStart;
+    private Vector2 startPosition;
+    private Quaternion startRotation;
 
-    private Vector3 startPosition; // Змінна для збереження стартової позиції
+    [SerializeField]
+    private float actionTimeout = 5.0f;
+    private float actionTime;
 
+    //private Vector3 startPosition;
+    
     void Start()
     {
+        arrow = GameObject.Find("Arrow").transform;
         rb2d = GetComponent<Rigidbody2D>();
-        startPosition = transform.position; // Зберігаємо стартову позицію
+        GameState.isBirdFly = false;
+        startPosition = transform.position;
+        startRotation = transform.rotation;
+        actionTime = 0.0f;
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Space) && !GameState.isBirdFly && Time.timeScale != 0)
+        {
+            float forceMagnitude = 500f + GameState.birdForceFactor * 500f;
+            rb2d.AddForce(forceMagnitude * arrow.right);
+            GameState.isBirdFly = true;
+            actionTime = actionTimeout;
+        }
+
+        if (actionTime > 0)
+        {
+            actionTime -= Time.deltaTime;
+            if (actionTime <= 0)
+            {
+                this.transform.position = startPosition; 
+                this.transform.rotation = startRotation;
+                rb2d.linearVelocity = Vector3.zero;
+                rb2d.angularVelocity = 0f;
+                GameState.isBirdFly = false;
+            }
+        }
+    }
+    /*void Start()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+        startPosition = transform.position; 
         isOnStart = true;
     }
 
@@ -21,12 +59,11 @@ public class BirdScript : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && isOnStart && Time.timeScale != 0)
         {
             float forceMagnitude = 500f + GameState.birdForceFactor * 500f;
-            rb2d.isKinematic = false; // Вмикаємо фізику перед запуском
+            rb2d.isKinematic = false; 
             rb2d.AddForce(forceMagnitude * arrow.right);
             isOnStart = false;
         }
 
-        // Якщо натиснута клавіша '1', повертаємо пташку на стартову позицію
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ResetBird();
@@ -35,10 +72,10 @@ public class BirdScript : MonoBehaviour
 
     private void ResetBird()
     {
-        transform.position = startPosition; // Повертаємо на стартову позицію
-        rb2d.linearVelocity = Vector2.zero; // Скидаємо швидкість
-        rb2d.angularVelocity = 0f; // Скидаємо обертання
-        rb2d.isKinematic = true; // Вимикаємо фізику, щоб пташка залишалася на місці
-        isOnStart = true; // Дозволяємо знову запускати пташку
-    }
+        transform.position = startPosition;
+        rb2d.linearVelocity = Vector2.zero;
+        rb2d.angularVelocity = 0f; 
+        rb2d.isKinematic = true; 
+        isOnStart = true; 
+    }*/
 }

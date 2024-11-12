@@ -15,6 +15,7 @@ public class ArrowScript : MonoBehaviour
 
     void Update()
     {
+        if (GameState.isBirdFly) return;
         float dy = Input.GetAxis("Vertical");
         float currentAngle = this.transform.eulerAngles.z;
         if(currentAngle > 180)

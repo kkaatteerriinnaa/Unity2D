@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1b0410e9157016b44884af232dc288a3
+guid: 5ea931163d5a91a43836d99abefb589c
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RedBirdToons_0: 653671159489481153
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

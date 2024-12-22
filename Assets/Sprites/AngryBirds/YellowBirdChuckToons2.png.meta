@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 26ee9d174eeaf674e8a91cd4b807cb5f
+guid: 1578a65c87c253744aed0b51c592250f
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      YellowBirdChuckToons2_0: 6776020731433952144
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
